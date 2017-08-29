@@ -1,0 +1,1 @@
+class UtilExtension extends Mixin(Animator, Debouncer, Coroutiner) {}
