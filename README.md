@@ -94,5 +94,5 @@ class UtilExtension extends Mixin(Animator, Debouncer, Coroutiner) {}
 
 Helper function for creating a mixin class. Does not work with static functions or getters and setters.
 
-## UtilExention.js
+## UtilExension.js
 Extension class that includes all functionality from `Animator.js`, `Debouncer.js`, and `Coroutiner.js`
