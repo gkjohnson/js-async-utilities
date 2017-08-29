@@ -1,4 +1,4 @@
-Animator = (function() {
+(function(module) {
 
     // platform agnostic next frame functions
     const _requestAnimationFrame = (function() {
@@ -13,7 +13,7 @@ Animator = (function() {
         return id => clearTimeout() 
     })()
 
-    return class {
+    module.Animator = class {
         constructor() {
             super.constructor(...arguments)
             this.__animations = {}
@@ -69,4 +69,4 @@ Animator = (function() {
             }
         }
     }
-})()
+})(typeof window !== 'undefined' && window || module)

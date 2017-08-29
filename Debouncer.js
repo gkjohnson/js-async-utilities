@@ -1,5 +1,5 @@
-Debouncer = (function() {
-    return class {
+(function(module) {
+    module.Debouncer = class {
         constructor() {
             super.constructor(...arguments)
             this.__debounces = {}
@@ -51,4 +51,4 @@ Debouncer = (function() {
             }
         }
     }
-})()
+})(typeof window !== 'undefined' && window || module)

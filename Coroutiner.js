@@ -1,7 +1,8 @@
-Coroutiner = (function() {
+(function(module) {
+    const Animator = (typeof require !== 'undefined') ? require('./Animator').Animator : window.Animator;
     const _time = (function() { return window.performance && window.performance.now() || new Date() })()
 
-    return class {
+    module.Coroutiner = class {
 
         constructor() {
             super.constructor(...arguments)
@@ -37,4 +38,4 @@ Coroutiner = (function() {
             if (key in this.__coroutines) delete this.__coroutines[key]
         }
     }
-})()
+})(typeof window !== 'undefined' && window || module)
