@@ -69,4 +69,4 @@
             }
         }
     }
-})(typeof window !== 'undefined' && window || module)
+})(typeof window !== 'undefined' && window || module && (module.exports = {}))

@@ -38,4 +38,4 @@
             if (key in this.__coroutines) delete this.__coroutines[key]
         }
     }
-})(typeof window !== 'undefined' && window || module)
+})(typeof window !== 'undefined' && window || module && (module.exports = {}))

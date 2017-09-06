@@ -1,0 +1,21 @@
+{
+  "name": "@gkjohnson/javascript-utils",
+  "version": "0.0.1",
+  "description": "",
+  "main": "Utils.js",
+  "directories": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gkjohnson/javascript-utils.git"
+  },
+  "author": "Garrett Johnson <garrett.kjohnson@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gkjohnson/javascript-utils/issues"
+  },
+  "homepage": "https://github.com/gkjohnson/javascript-utils#readme",
+  "devDependencies": {}
+}
