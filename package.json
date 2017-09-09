@@ -11,6 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/gkjohnson/javascript-utils.git"
   },
+  "keywords": [
+    "javascript",
+    "utility",
+    "debounce",
+    "animation",
+    "coroutine"
+  ],
   "author": "Garrett Johnson <garrett.kjohnson@gmail.com>",
   "license": "ISC",
   "bugs": {
