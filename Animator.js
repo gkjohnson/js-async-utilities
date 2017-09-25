@@ -15,7 +15,6 @@
 
     module.Animator = class {
         constructor() {
-            super.constructor(...arguments)
             this.__animations = {}
         }
 

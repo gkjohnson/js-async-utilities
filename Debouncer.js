@@ -1,7 +1,6 @@
 (function(module) {
     module.Debouncer = class {
         constructor() {
-            super.constructor(...arguments)
             this.__debounces = {}
         }
 

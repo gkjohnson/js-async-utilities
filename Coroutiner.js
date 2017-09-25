@@ -5,7 +5,6 @@
     module.Coroutiner = class {
 
         constructor() {
-            super.constructor(...arguments)
             this.__coroutines = {}
             this.__animator = new Animator()
         }

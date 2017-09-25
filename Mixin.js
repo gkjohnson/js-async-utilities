@@ -1,10 +1,12 @@
 (function(module){
-    module.Mixin = function() {
-        const __mixinargs__ = arguments
-        class Mixed {
+    module.Mixin = function(superClass, ...args) {
+        const __mixinargs__ = args
+
+        class Mixed extends superClass{
             constructor() {
+                super(...arguments)
                 for (let arg of __mixinargs__) {
-                    Object.assign(this, new arg())
+                    Object.assign(this, arg)
                     for (let key of Object.getOwnPropertyNames(arg.prototype)) {
                         if (key === 'constructor') continue
 
