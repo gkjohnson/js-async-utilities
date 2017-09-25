@@ -5,8 +5,10 @@
         class Mixed extends superClass{
             constructor() {
                 super(...arguments)
+
                 for (let arg of __mixinargs__) {
-                    Object.assign(this, arg)
+                    Object.assign(this, new arg())
+
                     for (let key of Object.getOwnPropertyNames(arg.prototype)) {
                         if (key === 'constructor') continue
 
