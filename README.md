@@ -17,17 +17,17 @@ db.debounce('key', () => console.log('Hello!'), 1000)
 // Hello!
 ```
 
-##### debounce(key, func, duration)
+### debounce(key, func, duration)
 Calls the provided function _func_ once after the provided duration.
 
 _key_ uniquely identifies the debounce function. If another debounce is requested with the same _key_, the previous one is cancelled.
 
-##### clearDebounce(key)
+### clearDebounce(key)
 Cancels the debounce request with the given _key_.
 
 If _key_ is `null`, then all debounces are cancelled.
 
-##### flushDebounce(key)
+### flushDebounce(key)
 Calls the debounce request with the provided key **now**.
 
 If _key_ is `null`, then all debounces are cancelled.
@@ -46,12 +46,12 @@ an.clearAnimation('key')
 // no more logs
 ```
 
-##### animate(key, func, callNow = true)
+### animate(key, func, callNow = true)
 Calls the provided function _func_ every frame until cleared.
 
 If _callNow_ is `true`, then the function will be called for the first time immediately.
 
-##### clearAnimation(key)
+### clearAnimation(key)
 Behaves like `ClearDebounce(key)` for animations.
 
 ## Coroutiner.js
@@ -79,12 +79,12 @@ cr.clearCoroutine('key')
 
 ```
 
-##### startCoroutine(key, func, duration, callNow = true)
+### startCoroutine(key, func, duration, callNow = true)
 Starts a coroutine that runs for the given duration every frame.
 
 If _callNow_ is `true`, then the function will be called for the first time immediately.
 
-##### clearCoroutine(key)
+### clearCoroutine(key)
 Behaves like `ClearDebounce(key)` for coroutines.
 
 ## Mixin.js
