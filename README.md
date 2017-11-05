@@ -1,13 +1,8 @@
 # javascript-utils
 
+[![npm version](https://badge.fury.io/js/%40gkjohnson%2Fjavascript-utils.svg)](https://www.npmjs.com/package/@gkjohnson/javascript-utils)
+
 Basic Javsacript utility functions and classes to provide class mixin creation and key-addressed debounce, animation, and coroutine functions.
-
-## Installation
-The repo is provided on npm [here](https://www.npmjs.com/package/@gkjohnson/javascript-utils).
-
-```
-npm install @gkjohnson/javascript-utils
-```
 
 # Classes
 Classes to extend or instantiate to enable easy access and use of simple utility functions
