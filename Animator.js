@@ -15,7 +15,7 @@
 
     const _requestIdleCallback = (function() {
         if (typeof requestIdleCallback !== 'undefined') return f => requestIdleCallback(f)
-        else return (f, 0) => setTimeout(f, 0)
+        else return f => setTimeout(f, 0)
     })()
 
     const _cancelIdleCallback = (function() {
@@ -71,7 +71,7 @@
             if (key == null) {
                 for (let k in this.__animations) this.clearAnimation(k)
             } else if (key in this.__animations) {
-                if (this.__animations[key].duringIdle) _requestIdleCallback(this.__animations[key].handle)
+                if (this.__animations[key].duringIdle) _cancelIdleCallback(this.__animations[key].handle)
                 else  _cancelAnimationFrame(this.__animations[key].handle)
 
                 delete this.__animations[key]
