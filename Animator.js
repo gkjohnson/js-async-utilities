@@ -24,17 +24,15 @@
         }
 
         animate(key, func, callNow = true) {
-            if (key == null || !func) return
+            if (key == null || !func || !(func instanceof Function)) return
 
             this.clearAnimation(key)
             this.__animations[key] = { func, handle: -1 }
 
             let frame = 0
 
-            // Returns whether or not the current
-            // animation is cancelled
-            // Needed because node does not have
-            // a cancel function for NextTick 
+            // Returns whether or not the current animation is cancelled
+            // Needed because node does not have a cancel function for NextTick 
             const _cancelled = () => !(key in this.__animations) || this.__animations[key].func !== func
 
             // Fires the next animation frame request
@@ -59,7 +57,7 @@
 
         // Clears the given animation key
         // Clears all animations if no key is given
-        clearAnimation(key) {
+        clearAnimation(key = null) {
             if (key == null) {
                 for (let k in this.__animations) this.clearAnimation(k)
             } else if (key in this.__animations) {

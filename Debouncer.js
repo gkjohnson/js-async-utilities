@@ -10,8 +10,8 @@
         }
 
         // Fires s debounce function after the given duration
-        debounce(key, func, dur) {
-            if (key == null || !func) return
+        debounce(key, func, dur = 0) {
+            if (key == null || !func || !(func instanceof Function)) return
 
             if (key in this.__debounces) this.clearDebounce(key)
 
@@ -19,14 +19,14 @@
                 handle: setTimeout(() => {
                     func()
                     this.clearDebounce(key)
-                }, dur || 0),
+                }, dur),
                 func
             }
         }
 
         // Clears the given debounce key
         // Clears all debounces if no key is given
-        clearDebounce(key) {
+        clearDebounce(key = null) {
             if (key == null) {
                 for (let k in this.__debounces) {
                     this.clearDebounce(k)
@@ -39,7 +39,7 @@
 
         // Fires the debounce now and clears the key
         // Flushes all debounces if no key is given
-        flushDebounce(key) {
+        flushDebounce(key = null) {
             if (key == null) {
                 for (let k in this.__debounces) {
                     this.flushDebounce(k)
