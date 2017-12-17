@@ -8,7 +8,7 @@
     })()
 
     const _cancelAnimationFrame = (function() {
-        if (typeof process !== 'undefined' && process.nextTick) return null
+        if (typeof process !== 'undefined' && process.nextTick) return () => {}
         if (typeof requestAnimationFrame !== 'undefined') return f => cancelAnimationFrame(f)
         return id => clearTimeout() 
     })()
@@ -61,7 +61,7 @@
             if (key == null) {
                 for (let k in this.__animations) this.clearAnimation(k)
             } else if (key in this.__animations) {
-                _cancelAnimationFrame && _cancelAnimationFrame(this.__animations[key].handle)
+                _cancelAnimationFrame(this.__animations[key].handle)
                 delete this.__animations[key]
             }
         }
