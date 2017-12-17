@@ -1,6 +1,6 @@
 (function(module) {
     const Animator = (typeof require !== 'undefined') ? require('./Animator').Animator : window.Animator;
-    const _time = (function() { return window.performance && window.performance.now() || new Date() })()
+    const getTime = () => window.performance && window.performance.now() || Date.now()
 
     module.Coroutiner = class {
 
@@ -11,14 +11,14 @@
 
         // Returns whether there are any coroutines running
         hasCoroutines() {
-            return !!Object.keys(this.__coroutines).length
+            return this.__animator.hasAnimations()
         }
 
         // Starts a coroutine that for "duration" of a
         // frame until finished
-        startCoroutine(key, gen, callnow, duration = 0) {
+        startCoroutine(key, gen, callnow = true, duration = 0) {
             this.__animator.animate(key, () => {
-                const time = _time
+                const time = getTime()
 
                 do {
                     const res = gen.next()
@@ -27,14 +27,14 @@
                         this.__animator.clearAnimation(key)
                         return
                     }
-                } while (_time - time < duration)
+                } while (getTime() - time < duration)
             })
         }
 
         // Clears the given coroutine key
         // Clears all coroutines if no key is given
-        clearCoroutine(key) {
-            if (key in this.__coroutines) delete this.__coroutines[key]
+        clearCoroutine(key = null) {
+            this.__animator.clearAnimation(key)
         }
     }
 })(typeof window !== 'undefined' && window || module && (module.exports = {}))
