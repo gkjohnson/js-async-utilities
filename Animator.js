@@ -9,8 +9,18 @@
 
     const _cancelAnimationFrame = (function() {
         if (typeof process !== 'undefined' && process.nextTick) return () => {}
-        if (typeof requestAnimationFrame !== 'undefined') return f => cancelAnimationFrame(f)
-        return id => clearTimeout() 
+        if (typeof requestAnimationFrame !== 'undefined') return id => cancelAnimationFrame(id)
+        return id => clearTimeout(id) 
+    })()
+
+    const _requestIdleCallback = (function() {
+        if (typeof requestIdleCallback !== 'undefined') return f => requestIdleCallback(f)
+        else return (f, 0) => setTimeout(f, 0)
+    })()
+
+    const _cancelIdleCallback = (function() {
+        if (typeof requestIdleCallback !== 'undefined') return id => cancelIdleCallback(id)
+        else return id => clearTimeout(id)
     })()
 
     module.Animator = class {
