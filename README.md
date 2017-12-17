@@ -39,7 +39,7 @@ const an = new Animator()
 an.animate('key', frameNum => console(frameNum))
 
 // 1000 frames later
-// prints 0..1000
+// prints 0..999
 
 an.clearAnimation('key')
 
@@ -68,7 +68,7 @@ function* increment() {
 const cr = new Coroutiner()
 cr.startCoroutine('key', increment())
 
-// prints 0..1000
+// prints 0..999
 ```
 
 ### startCoroutine(key, func, duration, callNow = true)
