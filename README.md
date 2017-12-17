@@ -59,9 +59,7 @@ Behaves like `ClearDebounce(key)` for animations.
 const Coroutiner = require('.../Coroutiner.js').Coroutiner
 
 function* increment() {
-  let i = 0
-  while(true) {
-    i++
+  for(let i = 0; i < 1000; i ++) {
     console.log(i)
     yield null
   }
@@ -70,13 +68,7 @@ function* increment() {
 const cr = new Coroutiner()
 cr.startCoroutine('key', increment())
 
-// 1000 frames later
 // prints 0..1000
-
-cr.clearCoroutine('key')
-
-// no more logs
-
 ```
 
 ### startCoroutine(key, func, duration, callNow = true)
