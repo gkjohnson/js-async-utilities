@@ -33,11 +33,11 @@
             return !!Object.keys(this.__animations).length
         }
 
-        animate(key, func, callNow = true) {
+        animate(key, func, callNow = true, duringIdle = false) {
             if (key == null || !func || !(func instanceof Function)) return
 
             this.clearAnimation(key)
-            this.__animations[key] = { func, handle: -1 }
+            this.__animations[key] = { func, handle: -1, duringIdle }
 
             let frame = 0
 
@@ -47,7 +47,7 @@
 
             // Fires the next animation frame request
             const _request = () => {
-                this.__animations[key].handle = _requestAnimationFrame(_do)
+                this.__animations[key].handle = duringIdle ? _requestIdleCallback(_do) : _requestAnimationFrame(_do)
             }
 
             // Calls the function and fires the next
@@ -71,7 +71,9 @@
             if (key == null) {
                 for (let k in this.__animations) this.clearAnimation(k)
             } else if (key in this.__animations) {
-                _cancelAnimationFrame(this.__animations[key].handle)
+                if (this.__animations[key].duringIdle) _requestIdleCallback(this.__animations[key].handle)
+                else  _cancelAnimationFrame(this.__animations[key].handle)
+
                 delete this.__animations[key]
             }
         }

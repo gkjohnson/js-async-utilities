@@ -16,7 +16,7 @@
 
         // Starts a coroutine that for "duration" of a
         // frame until finished
-        startCoroutine(key, gen, callnow = true, duration = 0) {
+        startCoroutine(key, gen, callnow = true, duration = 0, duringIdle = false) {
             this.__animator.animate(key, () => {
                 const time = getTime()
 
@@ -28,7 +28,7 @@
                         return
                     }
                 } while (getTime() - time < duration)
-            })
+            }, callnow, duringIdle)
         }
 
         // Clears the given coroutine key
