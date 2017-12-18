@@ -5,6 +5,7 @@
   "main": "Utils.js",
   "directories": {},
   "scripts": {
+    "serve": "static-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,5 +25,7 @@
     "url": "https://github.com/gkjohnson/javascript-utils/issues"
   },
   "homepage": "https://github.com/gkjohnson/javascript-utils#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "static-server": "^3.0.0"
+  }
 }
