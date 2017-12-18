@@ -6,6 +6,7 @@
   "directories": {},
   "scripts": {
     "serve": "static-server",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/gkjohnson/javascript-utils#readme",
   "devDependencies": {
-    "static-server": "^3.0.0"
+    "static-server": "^3.0.0",
+    "webpack": "^3.10.0"
   }
 }
