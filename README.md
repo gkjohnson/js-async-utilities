@@ -9,7 +9,7 @@ Classes to extend or instantiate to enable easy access and use of simple utility
 
 ## Debouncer.js
 ```javascript
-const Debouncer = require('.../Debouncer.js').Debouncer
+import Debouncer from '.../Debouncer.js'
 const db = new Debouncer()
 db.debounce('key', () => console.log('Hello!'), 1000)
 
@@ -34,7 +34,7 @@ If _key_ is `null`, then all debounces are cancelled.
 
 ## Animator.js
 ```javascript
-const Animator = require('.../Animator.js').Animator
+import Animator from '.../Animator.js'
 const an = new Animator()
 an.animate('key', frameNum => console(frameNum))
 
@@ -46,17 +46,19 @@ an.clearAnimation('key')
 // no more logs
 ```
 
-### animate(key, func, callNow = true)
+### animate(key, func, callNow = true, duringIdle = false)
 Calls the provided function _func_ every frame until cleared.
 
 If _callNow_ is `true`, then the function will be called for the first time immediately.
+
+If _duringIdle_ is `true`, then the animation function is called during the `requestIdleCallback` function instead of `requestAnimationFrame`
 
 ### clearAnimation(key)
 Behaves like `ClearDebounce(key)` for animations.
 
 ## Coroutiner.js
 ```javascript
-const Coroutiner = require('.../Coroutiner.js').Coroutiner
+import Coroutiner from '.../Coroutiner.js'
 
 function* increment() {
   for(let i = 0; i < 1000; i ++) {
@@ -71,17 +73,17 @@ cr.startCoroutine('key', increment())
 // prints 0..999
 ```
 
-### startCoroutine(key, func, duration, callNow = true)
+### startCoroutine(key, func, duration, callNow = true, duringIdle = false)
 Starts a coroutine that runs for the given duration every frame.
 
-If _callNow_ is `true`, then the function will be called for the first time immediately.
+See _Animator_ for _callNow_ and _duringIdle_ descriptions
 
 ### clearCoroutine(key)
 Behaves like `ClearDebounce(key)` for coroutines.
 
 ## Mixin.js
 ```javascript
-const Mixin = require('.../Mixin.js').Mixin
+import Mixin from '.../Mixin.js'
 
 class UtilExtension extends Mixin(Animator, Debouncer, Coroutiner) {}
 ```
