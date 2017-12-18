@@ -21,6 +21,8 @@ const _cancelIdleCallback = (function() {
     else return id => clearTimeout(id)
 })()
 
+const getTime = () => window.performance && window.performance.now() || Date.now()
+
 class Animator {
     /* Life Cycle Functions */
     constructor() {
@@ -40,6 +42,7 @@ class Animator {
         this.__animations[key] = { func, handle: -1, duringIdle }
 
         let frame = 0
+        let lastFrameTime = -1
 
         // Returns whether or not the current animation is cancelled
         // Needed because node does not have a cancel function for NextTick 
@@ -55,9 +58,14 @@ class Animator {
         const _do = () => {
             if (_cancelled()) return
 
-            func(frame)
+            const newTime = getTime()
+            const deltaTime = lastFrameTime === -1 ? 0 : newTime - lastFrameTime
+
+            func(frame, deltaTime)
             frame++
 
+            lastFrameTime = newTime
+            
             if (!_cancelled()) _request()
         }
 

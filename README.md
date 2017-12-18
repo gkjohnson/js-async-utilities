@@ -36,7 +36,7 @@ If _key_ is `null`, then all debounces are cancelled.
 ```javascript
 import Animator from '.../Animator.js'
 const an = new Animator()
-an.animate('key', frameNum => console(frameNum))
+an.animate('key', (frameNum, deltaTime) => console(frameNum))
 
 // 1000 frames later
 // prints 0..999
@@ -47,7 +47,7 @@ an.clearAnimation('key')
 ```
 
 ### animate(key, func, callNow = true, duringIdle = false)
-Calls the provided function _func_ every frame until cleared.
+Calls the provided function _func_ every frame until cleared. The function is passed both the current frame and time since last frame.
 
 If _callNow_ is `true`, then the function will be called for the first time immediately.
 
@@ -76,7 +76,7 @@ cr.startCoroutine('key', increment())
 ### startCoroutine(key, func, duration, callNow = true, duringIdle = false)
 Starts a coroutine that runs for the given duration every frame.
 
-See _Animator_ for _callNow_ and _duringIdle_ descriptions
+See _Animator_ for _callNow_ and _duringIdle_ descriptions.
 
 ### clearCoroutine(key)
 Behaves like `ClearDebounce(key)` for coroutines.
