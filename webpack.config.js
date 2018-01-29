@@ -1,5 +1,5 @@
 // Build all three files independently
-const packages = ['Animator', 'Coroutiner', 'Debouncer', 'Mixin']
+const packages = ['Animator', 'Coroutiner', 'Debouncer', 'Mixin', 'index']
 
 module.exports = 
     packages
