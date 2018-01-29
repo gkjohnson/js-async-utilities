@@ -1,6 +1,6 @@
 # async-utilities
 
-[![npm version](https://badge.fury.io/js/%40gkjohnson%2Fjavascript-utils.svg)](https://www.npmjs.com/package/@gkjohnson/javascript-utils)
+[![npm version](https://badge.fury.io/js/async-utilities.svg)](https://www.npmjs.com/package/async-utilities)
 
 Basic Javsacript utility functions and classes to provide class mixin creation and key-addressed debounce, animation, and coroutine functions.
 
