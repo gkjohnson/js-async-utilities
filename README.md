@@ -1,4 +1,4 @@
-# async-helper-classes
+# async-utilities
 
 [![npm version](https://badge.fury.io/js/%40gkjohnson%2Fjavascript-utils.svg)](https://www.npmjs.com/package/@gkjohnson/javascript-utils)
 
