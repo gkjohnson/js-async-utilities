@@ -1,8 +1,8 @@
 {
-  "name": "@gkjohnson/javascript-utils",
+  "name": "async-utilities",
   "version": "0.0.3",
   "description": "",
-  "main": "Utils.js",
+  "main": "index.js",
   "directories": {},
   "scripts": {
     "serve": "static-server",
@@ -18,7 +18,10 @@
     "utility",
     "debounce",
     "animation",
-    "coroutine"
+    "coroutine",
+    "performance",
+    "async",
+    "es6"
   ],
   "author": "Garrett Johnson <garrett.kjohnson@gmail.com>",
   "license": "ISC",
