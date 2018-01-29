@@ -1,6 +1,6 @@
 {
   "name": "async-utilities",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Set of utility classes to enable easy Coroutines, Debouncing, and Animation",
   "main": "index.js",
   "directories": {},
