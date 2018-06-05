@@ -83,46 +83,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Animator_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Animator_js__);
 
 
-const getTime = () => window.performance && window.performance.now() || Date.now()
+const getTime = () => window.performance && window.performance.now() || Date.now();
 
 class Coroutiner {
+
     /* Life Cycle Functions */
-    constructor() {
-        this.__coroutines = {}
-        this.__animator = new __WEBPACK_IMPORTED_MODULE_0__Animator_js___default.a()
+    constructor () {
+
+        this.__coroutines = {};
+        this.__animator = new __WEBPACK_IMPORTED_MODULE_0__Animator_js___default.a();
+
     }
 
     /* Public API */
     // Returns whether there are any coroutines running
-    hasCoroutines() {
-        return this.__animator.hasAnimations()
+    hasCoroutines () {
+
+        return this.__animator.hasAnimations();
+
     }
 
     // Starts a coroutine that for "duration" of a
     // frame until finished
-    startCoroutine(key, gen, callnow = true, duration = 0, duringIdle = false) {
+    startCoroutine (key, gen, callnow = true, duration = 0, duringIdle = false) {
+
         this.__animator.animate(key, () => {
-            const time = getTime()
+
+            const time = getTime();
 
             do {
-                const res = gen.next()
-                const done = res.done
+
+                const res = gen.next();
+                const done = res.done;
                 if (done) {
-                    this.__animator.clearAnimation(key)
-                    return
+
+                    this.__animator.clearAnimation(key);
+                    return;
+
                 }
-            } while (getTime() - time < duration)
-        }, callnow, duringIdle)
+
+            } while (getTime() - time < duration);
+
+        }, callnow, duringIdle);
+
     }
 
     // Clears the given coroutine key
     // Clears all coroutines if no key is given
-    clearCoroutine(key = null) {
-        this.__animator.clearAnimation(key)
+    clearCoroutine (key = null) {
+
+        this.__animator.clearAnimation(key);
+
     }
+
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Coroutiner);
+
 
 /***/ }),
 /* 1 */
