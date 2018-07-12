@@ -1,24 +1,24 @@
-function Mixin (superClass, ...args) {
+function Mixin(superClass, ...args) {
 
     const __mixinargs__ = args;
 
     class Mixed extends superClass {
 
-        constructor () {
+        constructor() {
 
             super(...arguments);
 
-            for (let arg of __mixinargs__) {
+            for (const Cons of __mixinargs__) {
 
-                Object.assign(this, new arg());
+                Object.assign(this, new Cons());
 
-                for (let key of Object.getOwnPropertyNames(arg.prototype)) {
+                for (const key of Object.getOwnPropertyNames(Cons.prototype)) {
 
                     if (key === 'constructor') continue;
 
-                    this[key] = function () {
+                    this[key] = function() {
 
-                        return arg.prototype[key].call(this, ...arguments);
+                        return Cons.prototype[key].call(this, ...arguments);
 
                     };
 

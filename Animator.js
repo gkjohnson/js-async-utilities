@@ -1,5 +1,5 @@
 // platform agnostic next frame functions
-const _requestAnimationFrame = (function () {
+const _requestAnimationFrame = (function() {
 
     if (typeof process !== 'undefined' && process.nextTick) return f => process.nextTick(f);
     if (typeof requestAnimationFrame !== 'undefined') return f => requestAnimationFrame(f);
@@ -7,7 +7,7 @@ const _requestAnimationFrame = (function () {
 
 })();
 
-const _cancelAnimationFrame = (function () {
+const _cancelAnimationFrame = (function() {
 
     if (typeof process !== 'undefined' && process.nextTick) return () => {};
     if (typeof requestAnimationFrame !== 'undefined') return id => cancelAnimationFrame(id);
@@ -15,26 +15,26 @@ const _cancelAnimationFrame = (function () {
 
 })();
 
-const _requestIdleCallback = (function () {
+const _requestIdleCallback = (function() {
 
     if (typeof requestIdleCallback !== 'undefined') return f => requestIdleCallback(f);
     else return f => setTimeout(f, 0);
 
 })();
 
-const _cancelIdleCallback = (function () {
+const _cancelIdleCallback = (function() {
 
     if (typeof requestIdleCallback !== 'undefined') return id => cancelIdleCallback(id);
     else return id => clearTimeout(id);
 
 })();
 
-const getTime = () => window.performance && window.performance.now() || Date.now();
+const getTime = () => (window.performance && window.performance.now()) || Date.now();
 
 class Animator {
 
     /* Life Cycle Functions */
-    constructor () {
+    constructor() {
 
         this.__animations = {};
 
@@ -42,13 +42,13 @@ class Animator {
 
     /* Public API */
     // Returns whether or not there are any animations
-    hasAnimations () {
+    hasAnimations() {
 
         return !!Object.keys(this.__animations).length;
 
     }
 
-    animate (key, func, callNow = true, duringIdle = false) {
+    animate(key, func, callNow = true, duringIdle = false) {
 
         if (key == null || !func || !(func instanceof Function)) return;
 
@@ -94,11 +94,11 @@ class Animator {
 
     // Clears the given animation key
     // Clears all animations if no key is given
-    clearAnimation (key = null) {
+    clearAnimation(key = null) {
 
         if (key == null) {
 
-            for (let k in this.__animations) this.clearAnimation(k);
+            for (const k in this.__animations) this.clearAnimation(k);
 
         } else if (key in this.__animations) {
 

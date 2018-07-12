@@ -1,11 +1,11 @@
 import Animator from './Animator.js';
 
-const getTime = () => window.performance && window.performance.now() || Date.now();
+const getTime = () => (window.performance && window.performance.now()) || Date.now();
 
 class Coroutiner {
 
     /* Life Cycle Functions */
-    constructor () {
+    constructor() {
 
         this.__coroutines = {};
         this.__animator = new Animator();
@@ -14,7 +14,7 @@ class Coroutiner {
 
     /* Public API */
     // Returns whether there are any coroutines running
-    hasCoroutines () {
+    hasCoroutines() {
 
         return this.__animator.hasAnimations();
 
@@ -22,7 +22,7 @@ class Coroutiner {
 
     // Starts a coroutine that for "duration" of a
     // frame until finished
-    startCoroutine (key, gen, callnow = true, duration = 0, duringIdle = false) {
+    startCoroutine(key, gen, callnow = true, duration = 0, duringIdle = false) {
 
         this.__animator.animate(key, () => {
 
@@ -47,7 +47,7 @@ class Coroutiner {
 
     // Clears the given coroutine key
     // Clears all coroutines if no key is given
-    clearCoroutine (key = null) {
+    clearCoroutine(key = null) {
 
         this.__animator.clearAnimation(key);
 
