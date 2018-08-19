@@ -79,17 +79,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Coroutiner", function() { return Coroutiner; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoroutinerMixin", function() { return CoroutinerMixin; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Animator_js__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Animator_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Animator_js__);
 
 
-const getTime = () => window.performance && window.performance.now() || Date.now();
+const getTime = () => (window.performance && window.performance.now()) || Date.now();
 
-class Coroutiner {
+const CoroutinerMixin =
+baseClass => class extends baseClass {
 
     /* Life Cycle Functions */
-    constructor () {
+    constructor() {
 
+        super(...arguments);
         this.__coroutines = {};
         this.__animator = new __WEBPACK_IMPORTED_MODULE_0__Animator_js___default.a();
 
@@ -97,7 +101,7 @@ class Coroutiner {
 
     /* Public API */
     // Returns whether there are any coroutines running
-    hasCoroutines () {
+    hasCoroutines() {
 
         return this.__animator.hasAnimations();
 
@@ -105,7 +109,7 @@ class Coroutiner {
 
     // Starts a coroutine that for "duration" of a
     // frame until finished
-    startCoroutine (key, gen, callnow = true, duration = 0, duringIdle = false) {
+    startCoroutine(key, gen, callnow = true, duration = 0, duringIdle = false) {
 
         this.__animator.animate(key, () => {
 
@@ -130,15 +134,17 @@ class Coroutiner {
 
     // Clears the given coroutine key
     // Clears all coroutines if no key is given
-    clearCoroutine (key = null) {
+    clearCoroutine(key = null) {
 
         this.__animator.clearAnimation(key);
 
     }
 
-}
+};
 
-/* harmony default export */ __webpack_exports__["default"] = (Coroutiner);
+const Coroutiner = CoroutinerMixin(class {});
+
+
 
 
 /***/ }),

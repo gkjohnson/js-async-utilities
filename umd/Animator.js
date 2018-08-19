@@ -79,8 +79,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(process) {// platform agnostic next frame functions
-const _requestAnimationFrame = (function () {
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Animator", function() { return Animator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnimatorMixin", function() { return AnimatorMixin; });
+// platform agnostic next frame functions
+const _requestAnimationFrame = (function() {
 
     if (typeof process !== 'undefined' && process.nextTick) return f => process.nextTick(f);
     if (typeof requestAnimationFrame !== 'undefined') return f => requestAnimationFrame(f);
@@ -88,7 +90,7 @@ const _requestAnimationFrame = (function () {
 
 })();
 
-const _cancelAnimationFrame = (function () {
+const _cancelAnimationFrame = (function() {
 
     if (typeof process !== 'undefined' && process.nextTick) return () => {};
     if (typeof requestAnimationFrame !== 'undefined') return id => cancelAnimationFrame(id);
@@ -96,40 +98,42 @@ const _cancelAnimationFrame = (function () {
 
 })();
 
-const _requestIdleCallback = (function () {
+const _requestIdleCallback = (function() {
 
     if (typeof requestIdleCallback !== 'undefined') return f => requestIdleCallback(f);
     else return f => setTimeout(f, 0);
 
 })();
 
-const _cancelIdleCallback = (function () {
+const _cancelIdleCallback = (function() {
 
     if (typeof requestIdleCallback !== 'undefined') return id => cancelIdleCallback(id);
     else return id => clearTimeout(id);
 
 })();
 
-const getTime = () => window.performance && window.performance.now() || Date.now();
+const getTime = () => (window.performance && window.performance.now()) || Date.now();
 
-class Animator {
+const AnimatorMixin =
+baseClass => class extends baseClass {
 
     /* Life Cycle Functions */
-    constructor () {
+    constructor() {
 
+        super(...arguments);
         this.__animations = {};
 
     }
 
     /* Public API */
     // Returns whether or not there are any animations
-    hasAnimations () {
+    hasAnimations() {
 
         return !!Object.keys(this.__animations).length;
 
     }
 
-    animate (key, func, callNow = true, duringIdle = false) {
+    animate(key, func, callNow = true, duringIdle = false) {
 
         if (key == null || !func || !(func instanceof Function)) return;
 
@@ -175,11 +179,11 @@ class Animator {
 
     // Clears the given animation key
     // Clears all animations if no key is given
-    clearAnimation (key = null) {
+    clearAnimation(key = null) {
 
         if (key == null) {
 
-            for (let k in this.__animations) this.clearAnimation(k);
+            for (const k in this.__animations) this.clearAnimation(k);
 
         } else if (key in this.__animations) {
 
@@ -192,9 +196,11 @@ class Animator {
 
     }
 
-}
+};
 
-/* harmony default export */ __webpack_exports__["default"] = (Animator);
+const Animator = AnimatorMixin(class {});
+
+
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 

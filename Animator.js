@@ -31,11 +31,13 @@ const _cancelIdleCallback = (function() {
 
 const getTime = () => (window.performance && window.performance.now()) || Date.now();
 
-class Animator {
+const AnimatorMixin =
+baseClass => class extends baseClass {
 
     /* Life Cycle Functions */
     constructor() {
 
+        super(...arguments);
         this.__animations = {};
 
     }
@@ -111,6 +113,8 @@ class Animator {
 
     }
 
-}
+};
 
-export default Animator;
+const Animator = AnimatorMixin(class {});
+
+export { Animator, AnimatorMixin };
