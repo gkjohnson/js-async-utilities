@@ -7,6 +7,7 @@
   "scripts": {
     "start": "static-server",
     "build": "webpack",
+    "lint": "eslint *.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,6 +31,9 @@
   },
   "homepage": "https://github.com/gkjohnson/javascript-utils#readme",
   "devDependencies": {
+    "eslint": "^5.4.0",
+    "jest": "^23.5.0",
+    "jest-cli": "^23.5.0",
     "static-server": "^3.0.0",
     "webpack": "^3.12.0"
   }
