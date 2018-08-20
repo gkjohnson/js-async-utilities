@@ -83,9 +83,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoroutinerMixin", function() { return CoroutinerMixin; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Animator_js__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Animator_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Animator_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getTime_js__ = __webpack_require__(2);
 
 
-const getTime = () => (window.performance && window.performance.now()) || Date.now();
 
 const CoroutinerMixin =
 baseClass => class extends baseClass {
@@ -95,7 +95,7 @@ baseClass => class extends baseClass {
 
         super(...arguments);
         this.__coroutines = {};
-        this.__animator = new __WEBPACK_IMPORTED_MODULE_0__Animator_js___default.a();
+        this.__animator = new __WEBPACK_IMPORTED_MODULE_0__Animator_js__["Animator"]();
 
     }
 
@@ -113,7 +113,7 @@ baseClass => class extends baseClass {
 
         this.__animator.animate(key, () => {
 
-            const time = getTime();
+            const time = Object(__WEBPACK_IMPORTED_MODULE_1__getTime_js__["a" /* getTime */])();
 
             do {
 
@@ -126,7 +126,7 @@ baseClass => class extends baseClass {
 
                 }
 
-            } while (getTime() - time < duration);
+            } while (Object(__WEBPACK_IMPORTED_MODULE_1__getTime_js__["a" /* getTime */])() - time < duration);
 
         }, callnow, duringIdle);
 
@@ -152,6 +152,59 @@ const Coroutiner = CoroutinerMixin(class {});
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (immutable) */ __webpack_exports__["a"] = getTime;
+function getTime() {
+
+    if (typeof window !== 'undefined' && window.performance) {
+
+        return window.performance.now();
+
+    } else if (typeof global !== 'undefined' && global.process && global.process.hrtime) {
+
+        const [sec, ns] = global.process.hrtime();
+        return sec * 1e3 + ns * 1e-6;
+
+    } else {
+        return Date.now();
+
+    }
+
+};
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ })
 /******/ ]);

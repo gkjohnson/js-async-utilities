@@ -1,6 +1,5 @@
-import Animator from './Animator.js';
-
-const getTime = () => (window.performance && window.performance.now()) || Date.now();
+import { Animator } from './Animator.js';
+import { getTime } from './getTime.js';
 
 const CoroutinerMixin =
 baseClass => class extends baseClass {

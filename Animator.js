@@ -1,16 +1,18 @@
+import { getTime } from './getTime.js';
+
 // platform agnostic next frame functions
 const _requestAnimationFrame = (function() {
 
-    if (typeof process !== 'undefined' && process.nextTick) return f => process.nextTick(f);
-    if (typeof requestAnimationFrame !== 'undefined') return f => requestAnimationFrame(f);
+    if (typeof global !== 'undefined' && global.process && global.process.nextTick) return f => global.process.nextTick(f);
+    if (typeof window !== 'undefined' && window.requestAnimationFrame) return f => window.requestAnimationFrame(f);
     return f => setTimeout(f, 0);
 
 })();
 
 const _cancelAnimationFrame = (function() {
 
-    if (typeof process !== 'undefined' && process.nextTick) return () => {};
-    if (typeof requestAnimationFrame !== 'undefined') return id => cancelAnimationFrame(id);
+    if (typeof global !== 'undefined' && global.process && global.process.nextTick) return () => {};
+    if (typeof window !== 'undefined' && window.cancelAnimationFrame) return id => window.cancelAnimationFrame(id);
     return id => clearTimeout(id);
 
 })();
@@ -24,12 +26,10 @@ const _requestIdleCallback = (function() {
 
 const _cancelIdleCallback = (function() {
 
-    if (typeof requestIdleCallback !== 'undefined') return id => cancelIdleCallback(id);
+    if (typeof cancelIdleCallback !== 'undefined') return id => cancelIdleCallback(id);
     else return id => clearTimeout(id);
 
 })();
-
-const getTime = () => (window.performance && window.performance.now()) || Date.now();
 
 const AnimatorMixin =
 baseClass => class extends baseClass {

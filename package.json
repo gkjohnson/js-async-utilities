@@ -8,7 +8,7 @@
     "start": "static-server",
     "build": "webpack",
     "lint": "eslint *.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
