@@ -1,5 +1,5 @@
 /* global
-    describe it beforeAll afterAll beforeEach afterEach expect
+    describe it beforeEach afterEach expect
 */
 const { Animator, Debouncer, Coroutiner } = require('../umd/index.js');
 
