@@ -10,6 +10,14 @@
     "lint": "eslint *.js",
     "test": "jest"
   },
+  "files": [
+    "Coroutiner.js",
+    "Animator.js",
+    "Debouncer.js",
+    "getTime.js",
+    "index.js",
+    "umd/"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gkjohnson/javascript-utils.git"
