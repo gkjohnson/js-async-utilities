@@ -3,6 +3,8 @@
 */
 const { Animator, Debouncer, Coroutiner } = require('../umd/index.js');
 
+// TODO: Test this in the browser context, as well
+
 const getMicroseconds = () => {
 
     const [sec, ns] = process.hrtime();
