@@ -1,15 +1,17 @@
 # async-utilities
 
-[![npm version](https://badge.fury.io/js/async-utilities.svg)](https://www.npmjs.com/package/async-utilities)
+[![npm version](https://img.shields.io/npm/v/async-utilities.svg?style=flat-square)](https://www.npmjs.com/package/async-utilities)
+[![travis build](https://img.shields.io/travis/gkjohnson/js-async-utilities.svg?style=flat-square)](https://travis-ci.org/gkjohnson/js-async-utilities)
+[![lgtm code quality](https://img.shields.io/lgtm/grade/javascript/g/gkjohnson/js-async-utilities.svg?style=flat-square&label=code-quality)](https://lgtm.com/projects/g/gkjohnson/js-async-utilities/)
 
 Basic Javsacript utility functions and classes to provide class mixin creation and key-addressed debounce, animation, and coroutine functions.
 
 # Classes
-Classes to extend or instantiate to enable easy access and use of simple utility functions
+Classes to extend or instantiate to enable easy access and use of simple utility functions. All classes are provided as a mixin function variant, as well, so the functionality can be added to existing classes, as well.
 
-## Debouncer.js
+## Debouncer, DebouncerMixin
 ```javascript
-import Debouncer from '.../Debouncer.js'
+import { Debouncer, DebouncerMixin } from '.../Debouncer.js'
 const db = new Debouncer()
 db.debounce('key', () => console.log('Hello!'), 1000)
 
@@ -32,9 +34,9 @@ Calls the debounce request with the provided key **now**.
 
 If _key_ is `null`, then all debounces are cancelled.
 
-## Animator.js
+## Animator, AnimatorMixin
 ```javascript
-import Animator from '.../Animator.js'
+import { Animator, AnimatorMixin } from '.../Animator.js'
 const an = new Animator()
 an.animate('key', (frameNum, deltaTime) => console(frameNum))
 
@@ -56,9 +58,9 @@ If _duringIdle_ is `true`, then the animation function is called during the `req
 ### clearAnimation(key)
 Behaves like `ClearDebounce(key)` for animations.
 
-## Coroutiner.js
+## Coroutiner, CoroutinerMixin
 ```javascript
-import Coroutiner from '.../Coroutiner.js'
+import { Coroutiner, CoroutinerMixin } from '.../Coroutiner.js'
 
 function* increment() {
   for(let i = 0; i < 1000; i ++) {
@@ -80,12 +82,3 @@ See _Animator_ for _callNow_ and _duringIdle_ descriptions.
 
 ### clearCoroutine(key)
 Behaves like `ClearDebounce(key)` for coroutines.
-
-## Mixin.js
-```javascript
-import Mixin from '.../Mixin.js'
-
-class UtilExtension extends Mixin(Animator, Debouncer, Coroutiner) {}
-```
-
-Helper function for creating a mixin class. Does not work with static functions or getters and setters.
