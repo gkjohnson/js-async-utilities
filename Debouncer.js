@@ -1,8 +1,10 @@
-class Debouncer {
+const DebouncerMixin =
+baseClass => class extends baseClass {
 
     /* Life Cycle Functions */
     constructor() {
 
+        super(...arguments);
         this.__debounces = {};
 
     }
@@ -76,6 +78,8 @@ class Debouncer {
 
     }
 
-}
+};
 
-export default Debouncer;
+const Debouncer = DebouncerMixin(class {});
+
+export { Debouncer, DebouncerMixin };

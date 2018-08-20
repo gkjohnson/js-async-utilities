@@ -79,25 +79,29 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-class Debouncer {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Debouncer", function() { return Debouncer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DebouncerMixin", function() { return DebouncerMixin; });
+const DebouncerMixin =
+baseClass => class extends baseClass {
 
     /* Life Cycle Functions */
-    constructor () {
+    constructor() {
 
+        super(...arguments);
         this.__debounces = {};
 
     }
 
     /* Public API */
     // Returns whether there are any debounces the be run
-    hasDebounces () {
+    hasDebounces() {
 
         return !!Object.keys(this.__debounces).length;
 
     }
 
     // Fires s debounce function after the given duration
-    debounce (key, func, dur = 0) {
+    debounce(key, func, dur = 0) {
 
         if (key == null || !func || !(func instanceof Function)) return;
 
@@ -110,18 +114,18 @@ class Debouncer {
                 this.clearDebounce(key);
 
             }, dur),
-            func
+            func,
         };
 
     }
 
     // Clears the given debounce key
     // Clears all debounces if no key is given
-    clearDebounce (key = null) {
+    clearDebounce(key = null) {
 
         if (key == null) {
 
-            for (let k in this.__debounces) {
+            for (const k in this.__debounces) {
 
                 this.clearDebounce(k);
 
@@ -138,11 +142,11 @@ class Debouncer {
 
     // Fires the debounce now and clears the key
     // Flushes all debounces if no key is given
-    flushDebounce (key = null) {
+    flushDebounce(key = null) {
 
         if (key == null) {
 
-            for (let k in this.__debounces) {
+            for (const k in this.__debounces) {
 
                 this.flushDebounce(k);
 
@@ -157,9 +161,11 @@ class Debouncer {
 
     }
 
-}
+};
 
-/* harmony default export */ __webpack_exports__["default"] = (Debouncer);
+const Debouncer = DebouncerMixin(class {});
+
+
 
 
 /***/ })

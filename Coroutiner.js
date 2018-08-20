@@ -1,12 +1,13 @@
-import Animator from './Animator.js';
+import { Animator } from './Animator.js';
+import { getTime } from './getTime.js';
 
-const getTime = () => (window.performance && window.performance.now()) || Date.now();
-
-class Coroutiner {
+const CoroutinerMixin =
+baseClass => class extends baseClass {
 
     /* Life Cycle Functions */
     constructor() {
 
+        super(...arguments);
         this.__coroutines = {};
         this.__animator = new Animator();
 
@@ -53,6 +54,8 @@ class Coroutiner {
 
     }
 
-}
+};
 
-export default Coroutiner;
+const Coroutiner = CoroutinerMixin(class {});
+
+export { Coroutiner, CoroutinerMixin };

@@ -1,5 +1,9 @@
-import Animator from './Animator.js';
-import Debouncer from './Debouncer.js';
-import Coroutiner from './Coroutiner.js';
+import { Animator, AnimatorMixin } from './Animator.js';
+import { Debouncer, DebouncerMixin } from './Debouncer.js';
+import { Coroutiner, CoroutinerMixin } from './Coroutiner.js';
 
-export { Animator, Debouncer, Coroutiner };
+export {
+    Animator, AnimatorMixin,
+    Debouncer, DebouncerMixin,
+    Coroutiner, CoroutinerMixin,
+};
